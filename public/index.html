@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALIGHTMOTION SCRAPER PANEL</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">AM_SCRAPER</span>
+            </div>
+            <div class="status-indicator">
+                <span class="status-dot" id="statusDot"></span>
+                <span id="statusText">SIAP</span>
+            </div>
+        </header>
+
+        <main>
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="single">SINGLE CREATE</button>
+                <button class="tab-btn" data-tab="bulk">BULK CREATE</button>
+                <button class="tab-btn" data-tab="tempmail">TEMP MAIL</button>
+                <button class="tab-btn" data-tab="docs">API DOCS</button>
+            </div>
+
+            <div class="tab-content active" id="tab-single">
+                <div class="card">
+                    <h3>Auto Create Akun</h3>
+                    <div class="form-group">
+                        <label>Username (opsional, auto jika kosong)</label>
+                        <input type="text" id="singleUsername" placeholder="username_kamu">
+                    </div>
+                    <div class="form-group">
+                        <label>Password (opsional, auto jika kosong)</label>
+                        <input type="text" id="singlePassword" placeholder="password_kamu">
+                    </div>
+                    <div class="form-group">
+                        <label>Referral Code (opsional)</label>
+                        <input type="text" id="singleReferral" placeholder="REF123">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Timeout (detik)</label>
+                            <input type="number" id="singleTimeout" value="45" min="10" max="120">
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <label>
+                                <input type="checkbox" id="singleAutoActivate" checked>
+                                Auto Activate
+                            </label>
+                        </div>
+                    </div>
+                    <button class="btn-primary" id="btnSingleCreate">
+                        <span class="btn-text">🚀 JALANKAN</span>
+                    </button>
+                </div>
+                <div class="card result-card" id="singleResult" style="display:none;">
+                    <h3>HASIL</h3>
+                    <pre id="singleResultContent"></pre>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-bulk">
+                <div class="card">
+                    <h3>Bulk Create Akun</h3>
+                    <div class="form-group">
+                        <label>Jumlah Akun</label>
+                        <input type="number" id="bulkCount" value="3" min="1" max="20">
+                    </div>
+                    <div class="form-group">
+                        <label>Referral Code (opsional)</label>
+                        <input type="text" id="bulkReferral" placeholder="REF123">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Timeout (detik)</label>
+                            <input type="number" id="bulkTimeout" value="45" min="10" max="120">
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <label>
+                                <input type="checkbox" id="bulkAutoActivate" checked>
+                                Auto Activate
+                            </label>
+                        </div>
+                    </div>
+                    <button class="btn-primary" id="btnBulkCreate">
+                        <span class="btn-text">🔥 JALANKAN BULK</span>
+                    </button>
+                </div>
+                <div class="card result-card" id="bulkResult" style="display:none;">
+                    <h3>HASIL BULK</h3>
+                    <div class="stats" id="bulkStats"></div>
+                    <pre id="bulkResultContent"></pre>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-tempmail">
+                <div class="card">
+                    <h3>Generate Temp Mail</h3>
+                    <button class="btn-primary" id="btnCreateMail">📧 BUAT EMAIL BARU</button>
+                </div>
+                <div class="card result-card" id="mailResult" style="display:none;">
+                    <h3>EMAIL AKTIF</h3>
+                    <div class="mail-info" id="mailInfo"></div>
+                    <button class="btn-secondary" id="btnCheckMail">🔄 CEK PESAN</button>
+                    <div class="mail-messages" id="mailMessages"></div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="tab-docs">
+                <div class="card">
+                    <h3>API Endpoints</h3>
+                    <div class="endpoint">
+                        <code class="method post">POST</code>
+                        <code class="url">/api/create</code>
+                        <p>Buat 1 akun baru. Body JSON: username, password, referralCode, timeoutSeconds, autoActivate</p>
+                    </div>
+                    <div class="endpoint">
+                        <code class="method post">POST</code>
+                        <code class="url">/api/bulk</code>
+                        <p>Buat multiple akun. Body JSON: count, referralCode, timeoutSeconds, autoActivate</p>
+                    </div>
+                    <div class="endpoint">
+                        <code class="method post">POST</code>
+                        <code class="url">/api/tempmail</code>
+                        <p>Kelola temp mail. Body: { action: "create" } atau { action: "messages", tempMail: {...} }</p>
+                    </div>
+                    <div class="endpoint">
+                        <code class="method get">GET</code>
+                        <code class="url">/api/tempmail</code>
+                        <p>Generate temp mail baru via GET request</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Contoh Response</h3>
+                    <pre>{
+  "status": true,
+  "email": "user123@tempmail.com",
+  "account": {
+    "username": "user88273",
+    "password": "Passabc123"
+  },
+  "proxyUsed": "direct",
+  "codeorder": "AM-XXXXXX",
+  "orderId": "ord_xxxxxx",
+  "magicLink": "https://..."
+}</pre>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>LOCAL PORT 3000 • VERCEL DEPLOY READY • 100% WORK</p>
+        </footer>
+    </div>
+
+    <div class="loading-overlay" id="loadingOverlay" style="display:none;">
+        <div class="spinner"></div>
+        <p id="loadingText">Memproses...</p>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
