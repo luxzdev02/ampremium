@@ -2,7 +2,7 @@
   "version": 2,
   "buildCommand": "npm run vercel-build",
   "outputDirectory": "public",
-  "installCommand": "npm install",
+  "installCommand": "npm start",
   "functions": {
     "api/*.js": {
       "maxDuration": 60,
