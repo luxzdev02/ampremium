@@ -1,0 +1,23 @@
+{
+  "name": "alightmotion-scraper-web",
+  "version": "1.0.0",
+  "description": "Web interface AlightMotion auto scraper siap deploy Vercel & run lokal port 3000",
+  "main": "server.js",
+  "engines": {
+    "node": "18.x"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "vercel-build": "echo 'Build complete'"
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "puppeteer-core": "^21.5.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "@sparticuz/chromium": "^119.0.0",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2"
+  }
+}
