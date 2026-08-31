@@ -4,7 +4,7 @@
   "description": "Web interface AlightMotion auto scraper siap deploy Vercel & run lokal port 3000",
   "main": "server.js",
   "engines": {
-    "node": "18.x"
+    "node": "24.x"
   },
   "scripts": {
     "start": "node server.js",
